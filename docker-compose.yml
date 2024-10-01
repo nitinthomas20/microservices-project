@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  tour-booking:
+    build:
+      context: ./tour_booking   # Path to the 'tour-booking' service folder
+    environment:
+      - PORT=5001
+    ports:
+      - "5001:5001"
+    networks:
+      - app-network
+
+  ticket-booking:
+    build:
+      context: ./ticket_booking   # Path to the 'ticket-booking' service folder
+    environment:
+      - PORT=5002
+    ports:
+      - "5002:5002"
+    networks:
+      - app-network
+
+  event-notification:
+    build:
+      context: ./event_page   # Path to the 'event-notification' service folder
+    environment:
+      - PORT=5003
+    ports:
+      - "5003:5003"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
